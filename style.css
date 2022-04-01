@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300&family=Open+Sans:wght@300&family=Raleway:wght@300&family=Smooch+Sans:wght@200&display=swap');
+
+:root {
+    --background-color: rgb(217, 217, 217);
+    --main-color: rgb(255, 255, 255) ;
+    --accent-color: rgb(255, 92, 51);
+    --accent-light-color: rgb(230, 230, 230);
+    --shadow-light: rgba(0, 0, 0, 0.2);
+    --shadow-dark: rgba(0, 0, 0, 0.8);
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family:  'Smooch Sans', sans-serif;
+    display: grid;
+    place-items: center;
+    background-color: var(--background-color);
+    padding: 1rem;
+}
+
+.calendar-title {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+}
+
+#previous, #next {
+    border: none;
+    background: none;
+    font-size: 2rem;
+    transition: opacity 0.5s ease;
+}
+
+#previous:hover, #next:hover, .closeBtn:hover, .day:hover {
+    opacity: 50%;
+}
+
+.day-name {
+    background-color: var(--accent-color);
+    color: var(--main-color);
+    max-width: 110px;
+    padding: 10px;
+    text-align: center;
+}
+
+#calendar, .calendar-names {
+    background-color: var(--accent-light-color) ;
+    font-size: 1.5rem;
+    display: grid;
+    width: 770px;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+#calendar >* {
+    padding: 10px
+}
+
+.day {
+    background-color: var(--main-color);
+    min-height: 100px;
+    border: 1px solid var(--accent-light-color);
+    display: flex;
+}
+
+.modal {
+    display: none;
+    position: absolute;
+    width: 500px;
+    height: 200px;
+    top: 80px;
+    background-color: var(--accent-light-color);
+    box-shadow: 0 0 10px 2px var(--shadow-light);
+    z-index: 20;
+}
+
+#years, #months {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+.modal-btn {
+    font-size: 1.2rem;
+    margin: 10px;
+    place-items: center;
+    cursor: pointer;
+    border: none;
+    background-color: var(--accent-ligth-color);
+    
+}
+
+.modal-btn:hover {
+    background-color: var(--background-color);
+    box-shadow: 0 0 2px 0 var(--shadow-light);
+}
+
+.icon {
+    color: var(--accent-color);
+    opacity: 80%;
+    place-self: center ;
+}
+
+#modalBackDrop {
+  display: none;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: var(--shadow-dark);
+}
+
+.closeBtn {
+    color: var(--shadow-dark);
+    padding: 5px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+#eventModal, #addEventModal {
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.modal > p {
+    padding: 10px;
+}
+
