@@ -68,8 +68,8 @@ function generateCurrentMonth() {
     const numberOfDays = new Date(currentYear, currentMonth + 1, 0).getDate();
     for (let dayNumber = 1; dayNumber <= numberOfDays; dayNumber++) {
         const currentDay = new Date(currentYear, currentMonth, dayNumber).toDateString();
+        const dayOfMonth = newElement(dayNumber, 'div');
 
-        dayOfMonth = newElement(dayNumber, 'div');
         dayOfMonth.classList.add('month-day');
 
         const eventOfTheDay = events.find((e) => e.date === currentDay);
@@ -107,22 +107,10 @@ function onPreviousClick() {
     generateCurrentMonth();
 }
 
-// open calendar menu
-const yearsList = [];
-yearsList[0] = currentYear - 4;
-yearsList[1] = currentYear - 3;
-yearsList[2] = currentYear - 2;
-yearsList[3] = currentYear - 1;
-yearsList[4] = currentYear;
-yearsList[5] = currentYear + 1;
-yearsList[6] = currentYear + 2;
-yearsList[7] = currentYear + 3;
-yearsList[8] = currentYear + 4;
-yearsList[9] = currentYear + 5;
-yearsList[10] = currentYear + 6;
-yearsList[11] = currentYear + 7;
-
-yearsList.forEach(createYearButton);
+// fill years modal
+Array.from(new Array(12))
+    .map((_, index) => index + currentYear - 4)
+    .forEach(createYearButton);
 
 function createYearButton(year) {
     const button = newElement(year, 'button');
@@ -134,7 +122,7 @@ function createYearButton(year) {
 
 function setYear() {
     chosenYear = parseInt(this.innerHTML, 10);
-    console.log('Current year is', chosenYear);
+    console.log('Chosen year is', chosenYear);
     hide(yearsModal);
     show(monthsModal, 'grid');
 }
@@ -151,7 +139,7 @@ function createMonthButton(month) {
 function setMonth() {
     currentMonth = monthNames.indexOf(this.innerHTML);
     currentYear = chosenYear;
-    console.log('Current month is', currentMonth);
+    console.log('Chosen month is', currentMonth);
     generateCurrentMonth();
     hide(monthsModal);
     hide(backDrop);
