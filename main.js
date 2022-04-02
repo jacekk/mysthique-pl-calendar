@@ -125,7 +125,7 @@ function createMonthButton(month) {
 
 function setMonth() {
     month = monthNames.indexOf(this.innerHTML);
-    year = chosenYear;
+    year = parseInt(chosenYear);
     console.log('Chosen month is ' + month);
     generateCalendar();
     hide(monthsModal);
