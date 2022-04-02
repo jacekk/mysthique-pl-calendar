@@ -1,4 +1,5 @@
 const today = new Date();
+
 let year = today.getFullYear();
 let month = today.getMonth();
 let day = today.getDate();
@@ -21,14 +22,15 @@ const monthNames = [
     'December',
 ];
 const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satruday'];
-const calendarTitle = document.getElementById('this-month');
-const calendar = document.getElementById('calendar');
-const yearsModal = document.getElementById('years');
-const monthsModal = document.getElementById('months');
-const eventModal = document.getElementById('eventModal');
-const addEvent = document.getElementById('addEventModal');
-const input = document.getElementById('eventTitle');
-const backDrop = document.getElementById('modalBackDrop');
+
+const calendarTitle = document.getElementById('current-month');
+const calendar = document.getElementById('calendar-body');
+const yearsModal = document.getElementById('years-modal');
+const monthsModal = document.getElementById('months-modal');
+const eventModal = document.getElementById('event-modal');
+const addEvent = document.getElementById('add-event-modal');
+const input = document.getElementById('event-title');
+const backDrop = document.getElementById('modal-backdrop');
 
 console.log(today);
 
@@ -59,7 +61,7 @@ function generateCalendar() {
         let thisDay = new Date(year, month, day).toDateString();
 
         dayOfMonth.appendChild(innerTxt);
-        dayOfMonth.classList.add('day');
+        dayOfMonth.classList.add('month-day');
         let eventOfTheDay = events.find((e) => e.date === thisDay);
         if (eventOfTheDay) {
             dayOfMonth.innerHTML += '<i class="fa-solid fa-bell icon"></i>';
@@ -72,8 +74,8 @@ function generateCalendar() {
 generateCalendar(); // generate actual month as starter
 
 // navigate through months
-const nextBtn = document.getElementById('next');
-const prevBtn = document.getElementById('previous');
+const nextBtn = document.getElementById('next-month-btn');
+const prevBtn = document.getElementById('previous-month-btn');
 nextBtn.addEventListener('click', next);
 prevBtn.addEventListener('click', previous);
 
@@ -205,7 +207,7 @@ function removeEvent() {
 
 function addCloseButton(modal) {
     modal.innerHTML += `
-        <div class="closeBtn" onclick="closeModal()">
+        <div class="modal-btn close-btn" onclick="closeModal()">
             <i class="fa-solid fa-xmark"></i>
         </div>
     `;

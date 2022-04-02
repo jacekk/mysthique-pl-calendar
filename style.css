@@ -2,26 +2,28 @@
 
 :root {
     --background-color: rgb(217, 217, 217);
-    --main-color: rgb(255, 255, 255) ;
+    --main-color: rgb(255, 255, 255);
     --accent-color: rgb(255, 92, 51);
     --accent-light-color: rgb(230, 230, 230);
     --shadow-light: rgba(0, 0, 0, 0.2);
     --shadow-dark: rgba(0, 0, 0, 0.8);
 }
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+
 body {
-    font-family:  'Smooch Sans', sans-serif;
+    font-family: 'Smooch Sans', sans-serif;
     display: grid;
     place-items: center;
     background-color: var(--background-color);
     padding: 1rem;
 }
 
-.calendar-title {
+.calendar-header {
     font-size: 2rem;
     display: flex;
     justify-content: space-between;
@@ -29,18 +31,20 @@ body {
     cursor: pointer;
 }
 
-#previous, #next {
+.calendar-header button {
     border: none;
     background: none;
     font-size: 2rem;
     transition: opacity 0.5s ease;
 }
 
-#previous:hover, #next:hover, .closeBtn:hover, .day:hover {
+.calendar-header button:hover,
+.modal-btn:hover,
+.month-day:hover {
     opacity: 50%;
 }
 
-.day-name {
+.calendar-weekdays > * {
     background-color: var(--accent-color);
     color: var(--main-color);
     max-width: 110px;
@@ -48,19 +52,20 @@ body {
     text-align: center;
 }
 
-#calendar, .calendar-names {
-    background-color: var(--accent-light-color) ;
+#calendar-body,
+.calendar-weekdays {
+    background-color: var(--accent-light-color);
     font-size: 1.5rem;
     display: grid;
     width: 770px;
     grid-template-columns: repeat(7, 1fr);
 }
 
-#calendar >* {
-    padding: 10px
+#calendar-body > * {
+    padding: 10px;
 }
 
-.day {
+.month-day {
     background-color: var(--main-color);
     min-height: 100px;
     border: 1px solid var(--accent-light-color);
@@ -78,10 +83,10 @@ body {
     z-index: 20;
 }
 
-#years, #months {
+#years-modal,
+#months-modal {
     grid-template-columns: repeat(4, 1fr);
 }
-
 
 .modal-btn {
     font-size: 1.2rem;
@@ -90,7 +95,6 @@ body {
     cursor: pointer;
     border: none;
     background-color: var(--accent-ligth-color);
-    
 }
 
 .modal-btn:hover {
@@ -101,21 +105,21 @@ body {
 .icon {
     color: var(--accent-color);
     opacity: 80%;
-    place-self: center ;
+    place-self: center;
 }
 
-#modalBackDrop {
-  display: none;
-  top: 0px;
-  left: 0px;
-  z-index: 10;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  background-color: var(--shadow-dark);
+#modal-backdrop {
+    display: none;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: var(--shadow-dark);
 }
 
-.closeBtn {
+.close-modal-btn {
     color: var(--shadow-dark);
     padding: 5px;
     position: absolute;
@@ -123,7 +127,8 @@ body {
     top: 5px;
 }
 
-#eventModal, #addEventModal {
+#event-modal,
+#add-event-modal {
     padding: 10px;
     flex-direction: column;
     align-items: center;
@@ -133,4 +138,3 @@ body {
 .modal > p {
     padding: 10px;
 }
-
