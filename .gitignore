@@ -1,0 +1,6 @@
+.parcel-cache/
+dist/
+node_modules/
+
+# This is a playground, so no need to lock dependencies.
+yarn.lock
