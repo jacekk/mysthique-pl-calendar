@@ -204,12 +204,19 @@ function removeEvent() {
 }
 
 function addCloseButton(modal) {
-    modal.innerHTML +=
-        '<div class="closeBtn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></div>';
+    modal.innerHTML += `
+        <div class="closeBtn" onclick="closeModal()">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    `;
 }
 
 function addRemoveButton(modal) {
-    modal.innerHTML += '<div class="modal-btn" onclick="removeEvent()">Delete this event</div>';
+    modal.innerHTML += `
+        <div class="modal-btn" onclick="removeEvent()">
+            Delete this event
+        </div>
+    `;
 }
 
 function hide(element) {
