@@ -44,7 +44,7 @@ body {
     opacity: 50%;
 }
 
-.calendar-weekdays > * {
+#calendar-weekdays > * {
     background-color: var(--accent-color);
     color: var(--main-color);
     max-width: 110px;
@@ -53,7 +53,7 @@ body {
 }
 
 #calendar-body,
-.calendar-weekdays {
+#calendar-weekdays {
     background-color: var(--accent-light-color);
     font-size: 1.5rem;
     display: grid;
@@ -102,7 +102,7 @@ body {
     box-shadow: 0 0 2px 0 var(--shadow-light);
 }
 
-.icon {
+.day-icon {
     color: var(--accent-color);
     opacity: 80%;
     place-self: center;

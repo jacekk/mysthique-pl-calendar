@@ -21,15 +21,7 @@
                 <i class="fa-solid fa-angle-right"></i>
             </button>
         </div>
-        <div class="calendar-weekdays">
-            <div>Monday</div>
-            <div>Tuesday</div>
-            <div>Wednesday</div>
-            <div>Thursday</div>
-            <div>Friday</div>
-            <div>Saturday</div>
-            <div>Sunday</div>
-        </div>
+        <div id="calendar-weekdays"></div>
         <div id="calendar-body"></div>
     </div>
     <div id="years-modal" class="modal"></div>
@@ -42,7 +34,7 @@
         <p>There is no events for this day</p>
         <div>
             <input id="event-title">
-            <button class="modal-btn" onclick="addNewEvent()">
+            <button class="modal-btn" onclick="submitAddEventModal()">
                 Add New Event
             </button>
         </div>
