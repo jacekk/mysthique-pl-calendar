@@ -3,10 +3,23 @@ let year = today.getFullYear();
 let month = today.getMonth();
 let day = today.getDate();
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
-let chosenYear = "";
-let clicked = "";
+let chosenYear = '';
+let clicked = '';
 
-const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+];
 const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satruday'];
 const calendarTitle = document.getElementById('this-month');
 const calendar = document.getElementById('calendar');
@@ -21,17 +34,19 @@ console.log(today);
 
 //generating actual month
 
-function generateCalendar() { 
+function generateCalendar() {
     let firstDayOfMonth = new Date(year, month, 1).getDay();
-    console.log('Showing now: ' + monthNames[month] + " " + year);
-    
-    // clear days of the previous month
-    calendar.innerHTML = "";
+    console.log('Showing now: ' + monthNames[month] + ' ' + year);
 
-    calendarTitle.innerHTML = monthNames[month] + " " + year;
+    // clear days of the previous month
+    calendar.innerHTML = '';
+
+    calendarTitle.innerHTML = monthNames[month] + ' ' + year;
 
     //generate empty days
-    if (firstDayOfMonth == 0) { firstDayOfMonth = 7 };
+    if (firstDayOfMonth == 0) {
+        firstDayOfMonth = 7;
+    }
     for (let i = 0; i < firstDayOfMonth - 1; i++) {
         let emptyDay = document.createElement('div');
         calendar.appendChild(emptyDay);
@@ -41,17 +56,16 @@ function generateCalendar() {
     for (let day = 1; day <= numberOfDays; day++) {
         let dayOfMonth = document.createElement('div');
         let innerTxt = document.createTextNode(day);
-        let thisDay = (new Date(year, month, day)).toDateString();
-        
+        let thisDay = new Date(year, month, day).toDateString();
+
         dayOfMonth.appendChild(innerTxt);
         dayOfMonth.classList.add('day');
-        let eventOfTheDay = events.find( e => e.date === thisDay);
+        let eventOfTheDay = events.find((e) => e.date === thisDay);
         if (eventOfTheDay) {
             dayOfMonth.innerHTML += '<i class="fa-solid fa-bell icon"></i>';
         }
         calendar.appendChild(dayOfMonth);
         dayOfMonth.addEventListener('click', openEventsModal);
-
     }
 }
 
@@ -67,15 +81,19 @@ function next() {
     if (month == 11) {
         month = 0;
         year += 1;
-    } else {month += 1;}
-    generateCalendar()
+    } else {
+        month += 1;
+    }
+    generateCalendar();
 }
 
 function previous() {
     if (month == 0) {
         month = 11;
         year -= 1;
-    } else {month -= 1;};  
+    } else {
+        month -= 1;
+    }
     generateCalendar();
 }
 
@@ -103,14 +121,14 @@ function createYearButton(year) {
     yearsModal.appendChild(button);
     button.className = 'modal-btn';
     button.addEventListener('click', setYear);
-};
+}
 
 function setYear() {
     chosenYear = this.innerHTML;
     console.log('Chosen year is ' + chosenYear);
     hide(yearsModal);
     show(monthsModal, 'grid');
-};
+}
 
 monthNames.forEach(createMonthButton);
 
@@ -135,23 +153,22 @@ function setMonth() {
 calendarTitle.addEventListener('click', chooseDate);
 
 function chooseDate() {
-    show(yearsModal,'grid');
+    show(yearsModal, 'grid');
     show(backDrop, 'block');
 }
-
 
 backDrop.addEventListener('click', closeModal);
 
 function closeModal() {
-    document.querySelectorAll('.modal').forEach(e => hide(e));
+    document.querySelectorAll('.modal').forEach((e) => hide(e));
     hide(backDrop);
     generateCalendar();
 }
 
 function openEventsModal() {
     backDrop.style.display = 'block';
-    clicked = (new Date(year, month, this.innerText)).toDateString();
-    const eventForDay = events.find(e => e.date === clicked);
+    clicked = new Date(year, month, this.innerText).toDateString();
+    const eventForDay = events.find((e) => e.date === clicked);
     if (eventForDay) {
         eventModal.innerHTML = '';
         addCloseButton(eventModal);
@@ -164,34 +181,31 @@ function openEventsModal() {
     } else {
         show(addEvent, 'flex');
     }
-    
 }
 
 function addNewEvent() {
     if (input.value) {
-        events.push(
-            {
-                date: clicked,
-                title: input.value
-            }
-        )
+        events.push({
+            date: clicked,
+            title: input.value,
+        });
         localStorage.setItem('events', JSON.stringify(events));
         input.value = '';
         closeModal();
-        
     }
     console.log('Event added to the calendar');
 }
 
 function removeEvent() {
-    events = events.filter(e => e.date !== clicked);
+    events = events.filter((e) => e.date !== clicked);
     localStorage.setItem('events', JSON.stringify(events));
     closeModal();
     generateCalendar();
 }
 
 function addCloseButton(modal) {
-    modal.innerHTML += '<div class="closeBtn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></div>';
+    modal.innerHTML +=
+        '<div class="closeBtn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></div>';
 }
 
 function addRemoveButton(modal) {
@@ -199,7 +213,7 @@ function addRemoveButton(modal) {
 }
 
 function hide(element) {
-    element.style.display = 'none'
+    element.style.display = 'none';
 }
 
 function show(element, layout) {
